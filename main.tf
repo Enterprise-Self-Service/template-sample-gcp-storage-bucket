@@ -26,8 +26,11 @@ resource "google_storage_bucket" "secure_bucket" {
     }
   }
 
-  encryption {
-    default_kms_key_name = var.encryption_key
+  dynamic "encryption" {
+    for_each = var.encryption_key ? [1] : []
+    content {
+        default_kms_key_name = var.encryption_key
+    }
   }
 
   uniform_bucket_level_access = var.uniform_bucket_level_access
