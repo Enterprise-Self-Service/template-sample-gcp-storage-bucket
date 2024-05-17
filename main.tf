@@ -10,7 +10,7 @@ resource "google_storage_bucket" "secure_bucket" {
   dynamic "logging" {
     for_each = var.logging_enabled ? [1] : []
     content {
-        log_bucket        = var.logging_enabled ? var.log_bucket : null
+        log_bucket        = var.log_bucket
         log_object_prefix = "log/"
     }
   }
