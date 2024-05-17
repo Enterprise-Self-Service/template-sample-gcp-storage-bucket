@@ -7,9 +7,12 @@ resource "google_storage_bucket" "secure_bucket" {
     enabled = var.versioning_enabled
   }
 
-  logging {
-    log_bucket        = var.logging_enabled ? var.log_bucket : null
-    log_object_prefix = "log/"
+  dynamic "logging" {
+    for_each = var.logging_enabled ? [1] : []
+    content {
+        log_bucket        = var.logging_enabled ? var.log_bucket : null
+        log_object_prefix = "log/"
+    }
   }
 
   labels = var.labels
