@@ -1,7 +1,6 @@
 resource "google_storage_bucket" "secure_bucket" {
   name     = var.bucket_name
   location = var.location
-  public_access_prevention = "enforced"
   
   versioning {
     enabled = var.versioning_enabled
