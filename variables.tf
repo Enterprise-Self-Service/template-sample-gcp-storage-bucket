@@ -29,7 +29,7 @@ variable "log_bucket" {
 
 variable "labels" {
   description = "A map of labels to assign to the bucket"
-  type        = map(string)
+  type        = map
   default     = {}
 }
 
