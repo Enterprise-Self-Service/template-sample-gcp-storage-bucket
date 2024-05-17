@@ -27,7 +27,7 @@ resource "google_storage_bucket" "secure_bucket" {
   }
 
   dynamic "encryption" {
-    for_each = var.encryption_key ? [1] : []
+    for_each = var.encryption_key != "" ? [1] : []
     content {
         default_kms_key_name = var.encryption_key
     }
